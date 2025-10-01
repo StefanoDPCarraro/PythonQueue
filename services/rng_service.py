@@ -25,7 +25,7 @@ class GeradorAleatorio():
         Para se ultrapassar o maximo de numeros.
         """
         if(self.max_numbers <= self.numeros_aleatorios_usados):
-            print(f'PARANDO POR CHEGAR NO NUMERO MAXIMO: {self.max_numbers}')
+            print(f'PARANDO POR CHEGAR NO NUMERO MAXIMO DE ITERAÇÕES: {self.max_numbers}')
             running.running = False
         self.numero_previo = (self.a * self.numero_previo + self.c) % self.m
         self.numeros_aleatorios_usados += 1

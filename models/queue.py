@@ -19,7 +19,6 @@ class QueueTandem:
         self.saidas = []
 
     def chegada(self, evento):
-        print('CHEGADA')
         # Atualiza tempo de ocupação das filas
         self.times[self.customers] += (evento.tempo - self.last_event_time)
         # Atualiza tempos global e local
@@ -47,7 +46,6 @@ class QueueTandem:
             global_vars.eventos.put((tempo, Evento(EventType.CHEGADA, tempo, evento.fila)))
     
     def passagem(self, evento):
-        print('PASSAGEM')
         # Sai da fila atual
         self.saida(evento)
         # Gera numero aleatorio e declara soma acumulada
@@ -62,7 +60,6 @@ class QueueTandem:
                 return
 
     def saida(self, evento):
-        print('SAIDA')
         # Atualiza tempo de ocupação das filas
         self.times[self.customers] += (evento.tempo - self.last_event_time)
         # Atualiza tempos global e local

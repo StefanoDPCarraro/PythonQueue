@@ -57,6 +57,7 @@ while running.running:
         fila_name = evento.fila
         global_vars.queues[fila_name].saida(evento)
 
+print('=-'*20)
 print(f'Tempo global final: {global_vars.tempo}')
 
 for queue in global_vars.queues.values():
