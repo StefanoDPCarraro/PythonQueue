@@ -3,9 +3,7 @@ import yaml
 
 import global_vars
 
-# Abre o arquivo YML em modo de leitura ('r')
 with open('model.yml', 'r', encoding='utf-8') as file:
-    # Carrega o conteúdo do arquivo YML de forma segura
     dados = yaml.safe_load(file)
 
 global_vars.seeds = dados['seeds']
