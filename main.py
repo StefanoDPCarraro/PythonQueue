@@ -20,11 +20,15 @@ import running
 
 for queue_key in dados['queues']:
     queue_val = dados['queues'][queue_key]
+    if 'capacity' in dados['queues'][queue_key]:
+        capacity = queue_val['capacity']
+    else:
+        capacity = -1
     if 'minArrival' and 'maxArrival' in dados['queues'][queue_key]:
-        queue = QueueTandem(servers = queue_val['servers'], capacity = queue_val['capacity'], min_service = queue_val['minService'], max_service = queue_val['maxService'],
+        queue = QueueTandem(servers = queue_val['servers'], capacity = capacity, min_service = queue_val['minService'], max_service = queue_val['maxService'],
                              min_arrival = queue_val['minArrival'], max_arrival = queue_val['maxArrival'])
     else:
-        queue = QueueTandem(servers = queue_val['servers'], capacity = queue_val['capacity'], min_service = queue_val['minService'], max_service = queue_val['maxService'])
+        queue = QueueTandem(servers = queue_val['servers'], capacity = capacity, min_service = queue_val['minService'], max_service = queue_val['maxService'])
     global_vars.queues[queue_key] = queue
 
 for network in dados['network']:
@@ -61,6 +65,7 @@ for queue in global_vars.queues.values():
     queue.times[queue.customers] += (global_vars.tempo - queue.last_event_time)
     print('Fila: ')
     print(f'Loss: {queue.loss}')
-    for index, var in enumerate(queue.times):
+    for index in queue.times:
+        var = queue.times[index]
         print(f'{index}: {var:.3f} -> {100*var/global_vars.tempo:.2f}%')
     print('=-'*20)

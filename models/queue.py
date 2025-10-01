@@ -1,3 +1,4 @@
+from collections import defaultdict
 import global_vars
 from models.enums.event_type import EventType
 from models.event import Evento
@@ -14,7 +15,7 @@ class QueueTandem:
         self.last_event_time = 0.0
         self.customers = 0
         self.loss = 0
-        self.times = [0] * (capacity+1)
+        self.times = defaultdict(int)
         self.saidas = []
 
     def chegada(self, evento):
@@ -25,7 +26,7 @@ class QueueTandem:
         self.last_event_time = evento.tempo
         global_vars.tempo = evento.tempo
         # Logica de entrada
-        if(self.customers < self.capacity):
+        if(self.customers < self.capacity or self.capacity == -1):
             self.customers += 1
             if(self.customers <= self.servers):
                 numero_random = global_rng.rng.next_random()

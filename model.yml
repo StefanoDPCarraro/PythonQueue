@@ -4,7 +4,6 @@ arrivals:
 queues: 
    Q1: 
       servers: 1
-      capacity: 50
       minArrival: 2.0
       maxArrival: 4.0
       minService: 1.0
